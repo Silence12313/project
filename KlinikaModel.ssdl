@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KlinikaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="KlinikaModelStoreContainer">
+    <EntitySet Name="Hospitals" EntityType="KlinikaModel.Store.Hospitals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MedicalHospitalServices" EntityType="KlinikaModel.Store.MedicalHospitalServices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MedicalServices" EntityType="KlinikaModel.Store.MedicalServices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MedicalSpecialists" EntityType="KlinikaModel.Store.MedicalSpecialists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pacients" EntityType="KlinikaModel.Store.Pacients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Payments" EntityType="KlinikaModel.Store.Payments" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_MedicalHospitalServices_Hospitals" Association="KlinikaModel.Store.FK_MedicalHospitalServices_Hospitals">
+      <End Role="Hospitals" EntitySet="Hospitals" />
+      <End Role="MedicalHospitalServices" EntitySet="MedicalHospitalServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalHospitalServices_MedicalServices" Association="KlinikaModel.Store.FK_MedicalHospitalServices_MedicalServices">
+      <End Role="MedicalServices" EntitySet="MedicalServices" />
+      <End Role="MedicalHospitalServices" EntitySet="MedicalHospitalServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalHospitalServices_MedicalSpecialists" Association="KlinikaModel.Store.FK_MedicalHospitalServices_MedicalSpecialists">
+      <End Role="MedicalSpecialists" EntitySet="MedicalSpecialists" />
+      <End Role="MedicalHospitalServices" EntitySet="MedicalHospitalServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalHospitalServices_MedicalSpecialists1" Association="KlinikaModel.Store.FK_MedicalHospitalServices_MedicalSpecialists1">
+      <End Role="MedicalSpecialists" EntitySet="MedicalSpecialists" />
+      <End Role="MedicalHospitalServices" EntitySet="MedicalHospitalServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalHospitalServices_Pacients" Association="KlinikaModel.Store.FK_MedicalHospitalServices_Pacients">
+      <End Role="Pacients" EntitySet="Pacients" />
+      <End Role="MedicalHospitalServices" EntitySet="MedicalHospitalServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Pacients" Association="KlinikaModel.Store.FK_Payments_Pacients">
+      <End Role="Pacients" EntitySet="Pacients" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hospitals">
+    <Key>
+      <PropertyRef Name="КодСтационара" />
+    </Key>
+    <Property Name="КодСтационара" Type="int" Nullable="false" />
+    <Property Name="Наименование" Type="ntext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MedicalHospitalServices">
+    <Key>
+      <PropertyRef Name="НомерДокумента" />
+    </Key>
+    <Property Name="НомерДокумента" Type="int" Nullable="false" />
+    <Property Name="ДатаПроведенияУслуги" Type="datetime2" Nullable="false" />
+    <Property Name="КодУслуги" Type="int" Nullable="false" />
+    <Property Name="КодПациента" Type="int" Nullable="false" />
+    <Property Name="Назначил" Type="int" Nullable="false" />
+    <Property Name="Провел" Type="int" Nullable="false" />
+    <Property Name="Стационар" Type="int" Nullable="false" />
+    <Property Name="КличествоУслуг" Type="nchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="MedicalServices">
+    <Key>
+      <PropertyRef Name="КодУслуги" />
+    </Key>
+    <Property Name="КодУслуги" Type="int" Nullable="false" />
+    <Property Name="Наменование" Type="ntext" Nullable="false" />
+    <Property Name="Стоимость" Type="money" Nullable="false" />
+    <Property Name="ЕдиницаИзмерения" Type="nchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="MedicalSpecialists">
+    <Key>
+      <PropertyRef Name="КодСотрудника" />
+    </Key>
+    <Property Name="КодСотрудника" Type="int" Nullable="false" />
+    <Property Name="ФИО" Type="ntext" Nullable="false" />
+    <Property Name="Должность" Type="ntext" Nullable="false" />
+    <Property Name="Телефон" Type="nchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Pacients">
+    <Key>
+      <PropertyRef Name="КодПациента" />
+    </Key>
+    <Property Name="КодПациента" Type="int" Nullable="false" />
+    <Property Name="ФИО" Type="ntext" Nullable="false" />
+    <Property Name="НомерПолиса" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Адрес" Type="ntext" />
+    <Property Name="Телефон" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="НомерДокументаОплаты" />
+    </Key>
+    <Property Name="НомерДокументаОплаты" Type="int" Nullable="false" />
+    <Property Name="Пациент" Type="int" Nullable="false" />
+    <Property Name="ДоговорНаОказаниеУслуги" Type="int" Nullable="false" />
+    <Property Name="СуммаОплаты" Type="money" Nullable="false" />
+    <Property Name="ДатаОплаты" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MedicalHospitalServices_Hospitals">
+    <End Role="Hospitals" Type="KlinikaModel.Store.Hospitals" Multiplicity="1" />
+    <End Role="MedicalHospitalServices" Type="KlinikaModel.Store.MedicalHospitalServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospitals">
+        <PropertyRef Name="КодСтационара" />
+      </Principal>
+      <Dependent Role="MedicalHospitalServices">
+        <PropertyRef Name="Стационар" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalHospitalServices_MedicalServices">
+    <End Role="MedicalServices" Type="KlinikaModel.Store.MedicalServices" Multiplicity="1" />
+    <End Role="MedicalHospitalServices" Type="KlinikaModel.Store.MedicalHospitalServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalServices">
+        <PropertyRef Name="КодУслуги" />
+      </Principal>
+      <Dependent Role="MedicalHospitalServices">
+        <PropertyRef Name="КодУслуги" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalHospitalServices_MedicalSpecialists">
+    <End Role="MedicalSpecialists" Type="KlinikaModel.Store.MedicalSpecialists" Multiplicity="1" />
+    <End Role="MedicalHospitalServices" Type="KlinikaModel.Store.MedicalHospitalServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalSpecialists">
+        <PropertyRef Name="КодСотрудника" />
+      </Principal>
+      <Dependent Role="MedicalHospitalServices">
+        <PropertyRef Name="Назначил" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalHospitalServices_MedicalSpecialists1">
+    <End Role="MedicalSpecialists" Type="KlinikaModel.Store.MedicalSpecialists" Multiplicity="1" />
+    <End Role="MedicalHospitalServices" Type="KlinikaModel.Store.MedicalHospitalServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalSpecialists">
+        <PropertyRef Name="КодСотрудника" />
+      </Principal>
+      <Dependent Role="MedicalHospitalServices">
+        <PropertyRef Name="Провел" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalHospitalServices_Pacients">
+    <End Role="Pacients" Type="KlinikaModel.Store.Pacients" Multiplicity="1" />
+    <End Role="MedicalHospitalServices" Type="KlinikaModel.Store.MedicalHospitalServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacients">
+        <PropertyRef Name="КодПациента" />
+      </Principal>
+      <Dependent Role="MedicalHospitalServices">
+        <PropertyRef Name="КодПациента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Pacients">
+    <End Role="Pacients" Type="KlinikaModel.Store.Pacients" Multiplicity="1" />
+    <End Role="Payments" Type="KlinikaModel.Store.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacients">
+        <PropertyRef Name="КодПациента" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="Пациент" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KlinikaModelStoreContainer" CdmEntityContainer="KlinikaEntities">
+    <EntitySetMapping Name="Hospitals">
+      <EntityTypeMapping TypeName="KlinikaModel.Hospitals">
+        <MappingFragment StoreEntitySet="Hospitals">
+          <ScalarProperty Name="КодСтационара" ColumnName="КодСтационара" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicalHospitalServices">
+      <EntityTypeMapping TypeName="KlinikaModel.MedicalHospitalServices">
+        <MappingFragment StoreEntitySet="MedicalHospitalServices">
+          <ScalarProperty Name="НомерДокумента" ColumnName="НомерДокумента" />
+          <ScalarProperty Name="ДатаПроведенияУслуги" ColumnName="ДатаПроведенияУслуги" />
+          <ScalarProperty Name="КодУслуги" ColumnName="КодУслуги" />
+          <ScalarProperty Name="КодПациента" ColumnName="КодПациента" />
+          <ScalarProperty Name="Назначил" ColumnName="Назначил" />
+          <ScalarProperty Name="Провел" ColumnName="Провел" />
+          <ScalarProperty Name="Стационар" ColumnName="Стационар" />
+          <ScalarProperty Name="КличествоУслуг" ColumnName="КличествоУслуг" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicalServices">
+      <EntityTypeMapping TypeName="KlinikaModel.MedicalServices">
+        <MappingFragment StoreEntitySet="MedicalServices">
+          <ScalarProperty Name="КодУслуги" ColumnName="КодУслуги" />
+          <ScalarProperty Name="Наменование" ColumnName="Наменование" />
+          <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+          <ScalarProperty Name="ЕдиницаИзмерения" ColumnName="ЕдиницаИзмерения" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicalSpecialists">
+      <EntityTypeMapping TypeName="KlinikaModel.MedicalSpecialists">
+        <MappingFragment StoreEntitySet="MedicalSpecialists">
+          <ScalarProperty Name="КодСотрудника" ColumnName="КодСотрудника" />
+          <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pacients">
+      <EntityTypeMapping TypeName="KlinikaModel.Pacients">
+        <MappingFragment StoreEntitySet="Pacients">
+          <ScalarProperty Name="КодПациента" ColumnName="КодПациента" />
+          <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+          <ScalarProperty Name="НомерПолиса" ColumnName="НомерПолиса" />
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="KlinikaModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="НомерДокументаОплаты" ColumnName="НомерДокументаОплаты" />
+          <ScalarProperty Name="Пациент" ColumnName="Пациент" />
+          <ScalarProperty Name="ДоговорНаОказаниеУслуги" ColumnName="ДоговорНаОказаниеУслуги" />
+          <ScalarProperty Name="СуммаОплаты" ColumnName="СуммаОплаты" />
+          <ScalarProperty Name="ДатаОплаты" ColumnName="ДатаОплаты" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
